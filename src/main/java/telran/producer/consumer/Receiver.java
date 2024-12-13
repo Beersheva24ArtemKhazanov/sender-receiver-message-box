@@ -2,11 +2,11 @@ package telran.producer.consumer;
 
 public class Receiver extends Thread {
     private MessageBox messageBox;
+    private boolean running;
 
     public Receiver(MessageBox messageBox) {
         this.messageBox = messageBox;
-        //FIXME update to USER thread with some logic of finishing
-        setDaemon(true);
+        this.running = true;
     }
 
     public void setMessageBox(MessageBox messageBox) {
@@ -15,7 +15,7 @@ public class Receiver extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while (running) {
             try {
                 String message = messageBox.take();
                 System.out.printf("Thread: %s, message: %s\n", getName(), message);
@@ -23,6 +23,11 @@ public class Receiver extends Thread {
 
             }
         }
+    }
+
+    public void shutDown() {
+        running = false;
+        interrupt();
     }
     
 }
