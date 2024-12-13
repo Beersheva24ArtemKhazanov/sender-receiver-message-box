@@ -3,6 +3,7 @@ package telran.producer.consumer;
 public class Sender extends Thread {
     private int nMessages;
     private MessageBox messageBox;
+
     public Sender(int nMessages, MessageBox messageBox) {
         this.nMessages = nMessages;
         this.messageBox = messageBox;

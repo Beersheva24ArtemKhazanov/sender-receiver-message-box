@@ -36,7 +36,7 @@ public class Receiver extends Thread {
 
     private boolean isEvenOrOdd(int msgNumber, int receiverNumber) {
         return (msgNumber % 2 == 0 && receiverNumber % 2 == 0) ||
-        (msgNumber % 2 != 0 && receiverNumber % 2 != 0); 
+                (msgNumber % 2 != 0 && receiverNumber % 2 != 0);
     }
 
     private int getNumber(String message) {

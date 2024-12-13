@@ -10,11 +10,8 @@ public class Main {
         for (int i = 0; i < N_RECEIVERS; i++) {
             new Receiver(messageBox).start();
         }
-
         sender.start();
         sender.join();
-
         Thread.sleep(100);
-
     }
 }
