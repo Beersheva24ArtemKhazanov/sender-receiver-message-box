@@ -18,34 +18,13 @@ public class Receiver extends Thread {
     @Override
     public void run() {
         while (true) {
+            String message;
             try {
-                String message = messageBox.take();
-                int msgNumber = getNumber(message);
-                int receiverNumber = getNumber(getName());
-                if (isEvenOrOdd(msgNumber, receiverNumber)) {
-                    System.out.printf("Thread: %s, message: %s\n", getName(), message);
-                } else {
-                    messageBox.put(message);
-                    sleep(10);
-                }
+                message = messageBox.take();
+                System.out.printf("Thread: %s, message: %s\n", getName(), message);
             } catch (InterruptedException e) {
-
+                e.printStackTrace();
             }
         }
     }
-
-    private boolean isEvenOrOdd(int msgNumber, int receiverNumber) {
-        return (msgNumber % 2 == 0 && receiverNumber % 2 == 0) ||
-                (msgNumber % 2 != 0 && receiverNumber % 2 != 0);
-    }
-
-    private int getNumber(String message) {
-        int res = 0;
-        Matcher matcher = Pattern.compile("\\d+").matcher(message);
-        if (matcher.find()) {
-            res = Integer.parseInt(matcher.group());
-        }
-        return res;
-    }
-
 }
