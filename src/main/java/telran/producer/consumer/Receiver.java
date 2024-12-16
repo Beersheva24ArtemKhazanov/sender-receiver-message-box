@@ -1,7 +1,4 @@
-package telran.producer.consumer;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+package telran.producer.consumer; 
 
 public class Receiver extends Thread {
     private MessageBox messageBox;
@@ -23,7 +20,7 @@ public class Receiver extends Thread {
                 message = messageBox.take();
                 System.out.printf("Thread: %s, message: %s\n", getName(), message);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                
             }
         }
     }
